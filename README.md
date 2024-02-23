@@ -1,1 +1,1 @@
- hosted link:   https://youtubeshorts-byamitmihsra.netlify.app/
+ hosted link:   youtubeshorts-byamitmishra.netlify.app
