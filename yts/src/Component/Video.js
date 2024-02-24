@@ -34,8 +34,31 @@ function Video({ id, src }) {
 
     videoRef.current.addEventListener("timeupdate", updateProgress);
 
+    
+    const handleVisibilityChange = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          
+          setPlaying(true);
+          videoRef.current.play();
+        } else {
+          
+          setPlaying(false);
+          videoRef.current.pause();
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleVisibilityChange, {
+      threshold: 0.5,
+    });
+
+   
+    observer.observe(videoRef.current);
+
+    
     return () => {
-      videoRef.current.removeEventListener("timeupdate", updateProgress);
+      observer.disconnect();
     };
   }, []);
 
